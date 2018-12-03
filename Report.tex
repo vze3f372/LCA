@@ -5,6 +5,7 @@
 \documentclass[english,12pt,a4paper,pdftex,elec,utf8]{aaltothesis}
 
 \graphicspath{{./Figures/}}
+
 %include used packages
 \usepackage{graphicx}
 \usepackage{subcaption}
@@ -22,7 +23,9 @@
 \usepackage{cleveref}
 \usepackage{gensymb}
 \usepackage{gensymb}
-
+\usepackage{datetime}
+\usepackage[acronym,nopostdot,toc,nonumberlist,section,nomain]{glossaries}
+\usepackage{setspace}
 
 
 \hypersetup{
@@ -39,6 +42,10 @@
   pdfkeywords={Embedded Real-Time Systems}
   }
 
+\newdateformat{specialdate}{\THEDAY.\twodigit{\THEMONTH}.\twodigit{\THEYEAR}}
+
+%input file for the list of abbreviations
+\input{abbr.tex}
 
 
 
@@ -56,24 +63,25 @@
 \department{Department of Electrical Engineering and Automation}
 \univdegree{MSc}
 \author{Joseph Hotchkiss}
-\thesistitle{Course Name}
+\thesistitle{<Course Name>t}
 \place{Espoo}
-\date{18.11.2018}
-\supervisor{Teacher Name} 
-\uselogo{aaltoRed}{''}
+\date{\specialdate\today}
+\supervisor{<Lecturer Name>l} 
+\uselogo{aaltoGreen}{?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%% Create the coverpage  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makecoverpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%cover page test (this is uselsess)
-\keywords{}
-\begin{abstractpage}[english]
-	
 
+\keywords{SLID}
+\begin{abstractpage}[english]
+
+Stuff
 
 \end{abstractpage}
+
 
 %% Make sure that the ToC begins on a new page
 
@@ -87,15 +95,14 @@
 
 
 %%%%%%%%%%%%%%%%%%%% Symbols and abbreviations  %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\mysection{Abbreviations}
-	%\subsection*{Abbreviations}
 
-		\begin{tabular}{ll}
-			
-			Abbr. & Abbreviation \\
-                         
-                           
-		\end{tabular}
+%Acronyms, abbreviations, etc. 
+\newpage
+\glsaddall % un-comment \glsaddall to show all abbreviations
+\begin{singlespacing}
+ %\printglossary[type=\acronymtype, title=Abbreviations]
+	\printacronyms[title=Abbreviations, style=super, nogroupskip=true]
+\end{singlespacing}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
