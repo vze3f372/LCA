@@ -5,15 +5,17 @@
 \documentclass[english,12pt,a4paper,pdftex,elec,utf8]{aaltothesis}
 
 \graphicspath{{./Figures/}}
-
 %include used packages
 \usepackage{graphicx}
+\usepackage{xcolor}
 \usepackage{subcaption}
 \usepackage{float}
 \usepackage{colortbl}
 \usepackage{amsfonts,amssymb,amsbsy}
 \usepackage[parfill]{parskip}
-\usepackage[noadjust]{cite}
+\usepackage[square, comma]{natbib}
+%\usepackage{biblatex}
+%\usepackage[superscript, noadjust]{cite}
 \usepackage{libertine} 
 \usepackage{url}
 \usepackage{multirow}
@@ -26,6 +28,17 @@
 \usepackage{datetime}
 \usepackage[acronym,nopostdot,toc,nonumberlist,section,nomain]{glossaries}
 \usepackage{setspace}
+\usepackage{letltxmacro,etoolbox,booktabs}
+
+\LetLtxMacro{\originalcite}{\cite}
+\def\tablecite#1#{%
+  \def\pretablecite{#1}%
+  \tableciteaux}
+\def\tableciteaux#1{%
+  \textsuperscript{\expandafter\originalcite\pretablecite{#1}}%
+}
+\AtBeginEnvironment{table}{\let\cite\tablecite}
+
 
 
 \hypersetup{
